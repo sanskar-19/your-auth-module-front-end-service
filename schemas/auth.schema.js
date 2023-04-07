@@ -14,3 +14,13 @@ export const REGISTER_SCHEMA = yup.object({
   email: yup.string().email().required(),
   password: yup.string().required(),
 });
+
+export const VERIFICATION_SCHEMA = yup.object({
+  email: yup.string().email().required(),
+  otp: yup.string().max(6).required(),
+});
+
+export const RESEND_VERIFICATION_SCHEMA = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().required(),
+});

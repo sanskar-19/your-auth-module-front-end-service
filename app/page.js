@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { LOGIN_SCHEMA } from "@/schemas/auth.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
+import { AuthServices } from "@/services/auth.service";
+import { toast } from "react-toastify";
 const Home = () => {
   const {
     register,
@@ -14,8 +16,13 @@ const Home = () => {
 
   console.log(errors);
   // Handling form submission
-  const handleLogin = (data) => {
-    console.log(data);
+  const handleLogin = async (data) => {
+    try {
+      let response = await AuthServices.login(data);
+      toast.success(response.data.message);
+    } catch (e) {
+      toast.error(e.response.data.detail);
+    }
   };
   return (
     <section className="flex flex-col h-screen w-screen bg-prussian_blue justify-center items-center">
@@ -69,6 +76,14 @@ const Home = () => {
         New User?{" "}
         <span className="underline cursor-pointer underline-offset-2">
           Click here to register
+        </span>
+      </Link>
+      <Link
+        href={"/resend-verification-link"}
+        className="w-[min(440px,calc(100%-2rem))] mt-2 text-white font-be_vietnam_pro"
+      >
+        <span className="underline cursor-pointer underline-offset-2">
+          Resend verification link
         </span>
       </Link>
     </section>
