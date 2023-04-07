@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthServices } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import Link from "next/link";
 const ResendVerificationLink = () => {
   const {
     register,
@@ -74,15 +75,14 @@ const ResendVerificationLink = () => {
           />
         </div>
       </form>
-      {/* <Link
+      <Link
         href={"/"}
         className="w-[min(440px,calc(100%-2rem))] mt-2 text-white font-be_vietnam_pro"
       >
-        Existing user?{" "}
         <span className="underline cursor-pointer underline-offset-2">
-          Sign In
+          Back to login
         </span>
-      </Link> */}
+      </Link>
     </section>
   );
 };
