@@ -9,7 +9,17 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        battery_charged_blue: "#10AEDB",
+        prussian_blue: "#063455",
+        mac_and_cheese: "#FFBC81",
+        crayola_red: "#eb274b",
+      },
+      fontFamily: {
+        be_vietnam_pro: "Be Vietnam Pro",
+      },
+    },
   },
   plugins: [],
 };
