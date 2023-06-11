@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { AuthServices } from "@/services/auth.service";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 const Home = () => {
   const {
     register,
@@ -14,12 +15,14 @@ const Home = () => {
     resolver: yupResolver(LOGIN_SCHEMA),
   });
 
+  const router = useRouter();
   console.log(errors);
   // Handling form submission
   const handleLogin = async (data) => {
     try {
       let response = await AuthServices.login(data);
       toast.success(response.data.message);
+      router.push('/dashboard')
     } catch (e) {
       toast.error(e.response.data.detail);
     }
@@ -38,9 +41,8 @@ const Home = () => {
             <input
               {...register("email")}
               id="login-email"
-              className={`login-register-field ${
-                errors?.email ? "border-crayola_red" : "border-white"
-              }`}
+              className={`login-register-field ${errors?.email ? "border-crayola_red" : "border-white"
+                }`}
               placeholder="user@example.com"
             />
           </div>
@@ -54,9 +56,8 @@ const Home = () => {
             <input
               {...register("password")}
               id="login-password"
-              className={`login-register-field ${
-                errors?.password ? "border-crayola_red" : "border-white"
-              }`}
+              className={`login-register-field ${errors?.password ? "border-crayola_red" : "border-white"
+                }`}
               placeholder="user@123"
               type="password"
             />
